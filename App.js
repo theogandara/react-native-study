@@ -1,45 +1,41 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React, {useState} from 'react';
+import React from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  useColorScheme,
   View,
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
 } from 'react-native';
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
   return (
-    <SafeAreaView>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <View styles={styles.viewStyles}>
-        <Text style={styles.title}>MFA</Text>
+    <SafeAreaView style={styles.background}>
+      <Text style={styles.title}>MFA</Text>
+      <View style={styles.form}>
+        <View style={styles.containerInput}>
+          <Text style={styles.label}>Email</Text>
+          <TextInput
+            placeholder="Insira seu email"
+            placeholderTextColor="#555"
+            style={styles.input}
+          />
+        </View>
+        <View style={styles.containerInput}>
+          <Text style={styles.label}>Senha</Text>
+          <TextInput
+            placeholder="Insira sua senha"
+            placeholderTextColor="#555"
+            style={styles.input}
+          />
+        </View>
       </View>
-
-      <ScrollView contentInsetAdjustmentBehavior="automatic" />
-      <View styles={styles.flex}>
-        <TouchableOpacity
-          onPress={() => setModalIsOpen(true)}
-          style={styles.buttonStyles}>
-          <Text style={styles.textStyle}>Login</Text>
+      <View style={styles.flex}>
+        <TouchableOpacity activeOpacity={0.7} style={styles.button}>
+          <Text style={styles.text}>Cadastrar</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => setModalIsOpen(true)}
-          style={styles.buttonStyles}>
-          <Text style={styles.textStyle}>Cadastro</Text>
+        <TouchableOpacity activeOpacity={0.7} style={styles.button}>
+          <Text style={styles.text}>Login</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -47,37 +43,52 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
-  textStyle: {
-    fontSize: 22,
-    color: '#fff',
-    textAlign: 'center',
+  background: {
+    backgroundColor: '#121012',
+    flex: 1,
+    padding: 200,
   },
   title: {
+    color: '#fff',
     fontSize: 32,
+    padding: 10,
+    alignSelf: 'center',
+    fontWeight: 'bold',
+  },
+  text: {
     color: '#000',
-    textAlign: 'center',
+    fontSize: 24,
+    alignSelf: 'center',
+  },
+  button: {
+    width: '40%',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 10,
   },
   flex: {
-    display: 'flex',
-    width: 100,
-    height: 50,
-    backgroundColor: '#808080',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    marginTop: 20,
+    padding: 20,
   },
-  buttonStyles: {
-    backgroundColor: '#000',
-    textAlign: 'center',
-    marginLeft: 20,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 50,
-    width: 100,
+  input: {
+    backgroundColor: '#1f1e25',
+    color: '#fff',
     marginTop: 10,
-    borderRadius: 50,
-    borderColor: '#000',
+    height: 45,
+    paddingHorizontal: 15,
+    borderRadius: 10,
   },
-  contentStyles: {
-    marginTop: 10,
+  label: {
+    color: '#fff',
+    fontWeight: '600',
+  },
+  containerInput: {
+    marginTop: 25,
+  },
+  form: {
+    padding: 10,
   },
 });
 
